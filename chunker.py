@@ -80,6 +80,44 @@ def fallback_split(
     return chunks
 
 
+def split_on_headings(documents: list[Document]) -> list[Chunk]:
+    """
+    Split each document at its "##" headings, one chunk per section.
+
+    The heading line stays attached to the text underneath it, so a chunk
+    about parking still contains the word "Parking" even when the sentences
+    below never repeat it. Anything above the first "##" — the title and any
+    introduction — becomes chunk 0.
+    """
+    chunks: list[Chunk] = []
+
+    for doc in documents:
+        sections: list[list[str]] = [[]]
+
+        for line in doc.text.split("\n"):
+            # A new section starts at "##", but not at a bare "#" title.
+            if line.startswith("##"):
+                sections.append([line])
+            else:
+                sections[-1].append(line)
+
+        index = 0
+        for section in sections:
+            text = "\n".join(section).strip()
+            if not text:
+                continue
+            chunks.append(
+                Chunk(
+                    text=text,
+                    source=doc.source,
+                    index=index,
+                    produced_by="chunker.py::split_documents",
+                )
+            )
+            index += 1
+    return chunks
+
+
 def split_documents(documents: list[Document]) -> list[Chunk]:
     """
     Split documents into chunks. ⚠️ REPLACE THE BODY OF THIS IN MILESTONE 3.
@@ -97,7 +135,8 @@ def split_documents(documents: list[Document]) -> list[Chunk]:
       - Would splitting on paragraph breaks keep more thoughts intact than
         splitting on a character count?
     """
-    return fallback_split(documents)
+
+    return split_on_headings(documents)
 
 
 def describe(chunks: list[Chunk]) -> str:
