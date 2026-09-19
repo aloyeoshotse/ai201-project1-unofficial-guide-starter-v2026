@@ -1,6 +1,7 @@
 # The Unofficial Guide
 
 <!-- Replace this line with your name and which corpus you picked. -->
+Aloye Oshote; Copus --> city_guides
 
 > **This file is your submission.** Fill it in as you go — most sections get
 > written during the milestone that produces them, not at the end.
@@ -28,9 +29,6 @@
      Milestone 5. -->
 
 ## Chunking Strategy
-
-**Chunk size:**
-**Overlap:**
 
 <!-- What about YOUR documents made you pick these numbers? Short posts and
      long sectioned guides don't want the same chunking, and "800 seemed
