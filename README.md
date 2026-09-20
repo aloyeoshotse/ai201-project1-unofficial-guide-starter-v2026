@@ -40,7 +40,12 @@ Aloye Oshote; Copus --> city_guides
      more than pretending you got it right first time.
 
      Milestone 3. -->
-     I noticed that in each of the documents, the sections are neatly broken up. Each has a header with one or more parapgraphs following. So, I decided to chunk by the headers. In a .md file, the headers are denoted by "##". Since the cut points are not arbitrary, I opted out of using an overlap. 
+
+I chunk by section heading instead of by a fixed character count. Every document in `city_guides` is a markdown file named after one area (for example `guide_elder_ness.md`), and each is already divided into sections. Each section has a `##` heading with one or more paragraphs under it, and each one covers a single topic about that area. So `split_on_headings` starts a new chunk at every `##` line and keeps the heading attached to the text below it.
+
+There is no fixed chunk size, because the size follows the section.
+
+I use no overlap. Overlap exists so a sentence isn't cut in half at an arbitrary boundary, and heading boundaries are not arbitrary: the text on either side of one is a different topic.
 
 ## Sample Chunks
 
@@ -145,7 +150,12 @@ Sources retrieved: guide_eating.md, guide_elder_ness.md, guide_walking.md
 
      Milestone 4. -->
 
-     I kept 0.6 as my relevance cutoff.
+I kept the starter's cutoff of **0.6**. I ran my five test questions and the five in `OUT_OF_SCOPE` and recorded the best distance for each. The two groups separate cleanly:
+
+- **Questions the corpus covers:** best distances from 0.260 to 0.437.
+- **Questions it doesn't cover:** best distances from 0.754 to 0.899.
+
+The gap runs from 0.437 to 0.754, and 0.6 sits inside it. At 0.6, all five in-corpus questions pass the gate and all five out-of-scope questions are refused.
 
 | Question | In corpus? | Best distance |
 |---|---|---|

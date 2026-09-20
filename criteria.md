@@ -19,11 +19,11 @@ pipeline earns credit; *"80% seemed reasonable"* does not.
 
 ## 1. Retrieved chunks contain the answer
 
-For at least 4 of my 5 test questions, the retrieved chunks include one that
-contains the answer.
+For at least 4 of the 5 questions in `questions.py`, the `expects` phrase
+appears in the text of at least one of the top 5 retrieved chunks.
 
 **Why this target:**
-<!-- 4/5, not 5/5, because one of my five questions covers a topic only two source documents mention, thinner coverage means weaker similarity signal for that question specifically. -->
+4/5, not 5/5, because one of my five questions covers a topic only two source documents mention, thinner coverage means weaker similarity signal for that question specifically.
 
 ---
 
@@ -32,7 +32,7 @@ contains the answer.
 Every answer the system produces names at least one source document.
 
 **Why this target:**
-<!-- 5/5 because citation is enforced structurally in my prompt template, not a quality outcome that degrades, a miss means the template broke, not that the system struggled. -->
+5/5 because citation is enforced structurally in my prompt template, not a quality outcome that degrades, a miss means the template broke, not that the system struggled.
 
 ---
 
@@ -48,12 +48,13 @@ in at least 4 of 5 tries.
      just keep five of them, or the "4 of 5" above has nothing to be 4 of. -->
 
 **Why this target:**
-<!-- 4/5 because a relevance gate is inherently probabilistic, distance-based cutoffs rarely separate in-corpus from out-of-corpus questions perfectly, so I'm allowing for one edge case near the boundary. -->
+4/5 because a relevance gate is inherently probabilistic, distance-based cutoffs rarely separate in-corpus from out-of-corpus questions perfectly, so I'm allowing for one edge case near the boundary.
 
 ---
 
 ## 4. Something about your chunks
-For at least 4 of 5 test questions, the single top-ranked chunk alone (not the full top-k set) contains the answer.
+
+For at least 4 of the 5 questions in `questions.py`, the `expects` phrase appears in the text of the rank-1 chunk (the single top-ranked chunk, not the rest of the top 5).
 
 <!-- YOU WRITE THIS ONE.
 
@@ -70,7 +71,7 @@ For at least 4 of 5 test questions, the single top-ranked chunk alone (not the f
 
 
 **Why this target:**
-<!-- 4/5 tolerance because a rank-1 miss is a ranking weakness, not a correctness failure, the generator can usually still read past it in lower-ranked chunks. -->
+4/5 tolerance because a rank-1 miss is a ranking weakness, not a correctness failure, the generator can usually still read past it in lower-ranked chunks.
 
 
 ---
@@ -90,7 +91,7 @@ For 5 of 5 test answers, the cited source document contains the specific fact or
 
 
 **Why this target:**
-<!-- Zero tolerance because a fabricated citation is a trust failure, not a miss, one instance disqualifies the system for citation-dependent use cases. -->
+Zero tolerance because a fabricated citation is a trust failure, not a miss, one instance disqualifies the system for citation-dependent use cases.
 
 
 ---
