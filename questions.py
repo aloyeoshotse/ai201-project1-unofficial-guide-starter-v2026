@@ -27,7 +27,7 @@ QUESTIONS = [
     {"question": "Where can I find the best food in Pellew Sands?", "expects": "Marine Terrace"},
     {"question": "If I drove on good roads from Brightwater to Thornby Wells, how long would it take?", "expects": "45 minutes"},
     {"question": "Where can I go camping in Corry Vale?", "expects": "two marked fields"},
-    {"question": "What payment is accepted at the railway machine on the platform?", "expects": "cards only"},
+    {"question": "What payment is accepted at the railway machine on the platform in Brightwater?", "expects": "cards only"},
 ]
 
 # Questions from a different world entirely. Your gate should refuse all five.
