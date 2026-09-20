@@ -27,6 +27,7 @@ Aloye Oshote; Copus --> city_guides
      this repo.
 
      Milestone 5. -->
+     I selected the city_guides corpus. My system answers questions about different cities within a specific regions. The guides give information on food, how to get around, what sights to see, etc. It also give some tips on how to navigate the region, as well as key information that any traveler should know before making the trip. 
 
 ## Chunking Strategy
 
@@ -172,8 +173,10 @@ Sources retrieved: guide_eating.md, guide_elder_ness.md, guide_walking.md
      Milestone 5. -->
 
 **1.**
+I used AI to help me write my chunking method. I told it exactly how I wanted it chunked, and it worked with me to create the function I used. It ignored the overlap, and I agreed, since the city_guide files were ordered neatly. 
 
 **2.**
+I asked AI to help me refine and critique my criteria and questions. I asked for feedback and tips for improvement. It called out the different criteria that lacked specificity, and told me how to improve them. 
 
 <!-- ── Stretch features ─────────────────────────────────────────────────────
      Doing one? Say so here BEFORE you start. A feature this README never
