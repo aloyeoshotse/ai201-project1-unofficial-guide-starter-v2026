@@ -122,10 +122,15 @@ cards only.
      visible. Milestone 4. -->
 
 **Question:**
+"What are the three reasons why people come to Elder Ness?"
 
 **Answer:**
-
 ```
+(best distance 0.260, cutoff 0.6)
+
+People come to Elder Ness for one of three reasons: birds, walking, or a deliberate absence of things to do (guide_elder_ness.md).
+
+Sources retrieved: guide_eating.md, guide_elder_ness.md, guide_walking.md
 ```
 
 **My relevance cutoff:**
@@ -139,9 +144,21 @@ cards only.
 
      Milestone 4. -->
 
+     I kept 0.6 as my relevance cutoff.
+
 | Question | In corpus? | Best distance |
 |---|---|---|
-|  |  |  |
+| "What are the three reasons why people come to Elder Ness?" | Yes | 0.260 |
+| "Where can I find the best food in Pellew Sands?" | Yes | 0.437 |
+| "If I drove on good roads from Brightwater to Thornby Wells, how long would it take?" | Yes | 0.341 |
+| "Where can I go camping in Corry Vale?" | Yes | 0.408 |
+| "What payment is accepted at the railway machine on the platform in Brightwater?" | Yes | 0.436 |
+| "What is the capital of Mongolia?" | No | 0.754 | 
+| "How do I change the oil in a diesel engine?" | No | 0.892 |
+| "Who won the 1994 World Cup?" | No | 0.899 |
+| "What is the recommended dosage of ibuprofen for a headache?" | No | 0.846 |
+| "How do I write a for loop in Rust?" | No | 0.813 |
+
 
 ## How I Used AI
 
