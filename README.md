@@ -218,8 +218,8 @@ I asked AI to help me refine and critique my criteria and questions. I asked for
 | 1. Retrieved chunk contains the answer | 4 of 5 |  |  |  |  |
 | 2. Every answer names a source | 5 of 5 |  |  |  |  |
 | 3. Gate stops out-of-corpus questions | 4 of 5 |  |  |  |  |
-| 4. | | | | | |
-| 5. | | | | | |
+| 4. Answer appears in the top chunk | 4 of 5 | | | | |
+| 5. Cited sources contain the specific fact | 5 of 5 | | | | |
 
 <!-- Underneath, paste the REAL output for each criterion from one of your
      runs — the actual text your system produced, not a description of it.
