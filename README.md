@@ -215,15 +215,86 @@ I asked AI to help me refine and critique my criteria and questions. I asked for
 
 | Criterion | Target | Run 1 | Run 2 | Run 3 | Verdict |
 |---|---|---|---|---|---|
-| 1. Retrieved chunk contains the answer | 4 of 5 |  |  |  |  |
-| 2. Every answer names a source | 5 of 5 |  |  |  |  |
-| 3. Gate stops out-of-corpus questions | 4 of 5 |  |  |  |  |
-| 4. Answer appears in the top chunk | 4 of 5 | | | | |
-| 5. Cited sources contain the specific fact | 5 of 5 | | | | |
+| 1. Retrieved chunk contains the answer | 4 of 5 | 5/5 | 5/5 | 5/5 | MET |
+| 2. Every answer names a source | 5 of 5 | 5/5 | 5/5 | 5/5 | MET |
+| 3. Gate stops out-of-corpus questions | 4 of 5 | 5/5 | 5/5 | 5/5 | MET |
+| 4. Rank-1 chunk contains the answer | 4 of 5 | 3/5 | 3/5 | 3/5 | MISSED |
+| 5. Cited source actually contains the claimed fact | 5 of 5 | 5/5 | 5/5 | 5/5 | MET |
 
 <!-- Underneath, paste the REAL output for each criterion from one of your
      runs — the actual text your system produced, not a description of it.
      Name the file and function that produced it. -->
+
+### Criterion 1 
+Retrieved chunk contains the answer (expects: "Marine Terrace") - PASS
+
+The prompt's "Documents:" section includes this chunk:
+
+```
+[from guide_pellew_sands.md]
+## Eat and drink
+
+The seafront is chips and ice cream, done well and without pretence. The better cooking is on Marine Terrace, one street back, where four or five places are genuinely good and roughly half the seafront price. Sunday evening is difficult — most kitchens close.
+```
+Produced by: store.py::search, assembled into the prompt by generate.py::build_prompt.
+
+### Criterion 2
+Every answer names a source - PASS
+
+```
+The better cooking in Pellew Sands can be found on Marine Terrace, which is located one street back from the seafront. 
+
+Sources: `guide_pellew_sands.md` and `guide_eating.md`
+```
+
+Produced by: generate.py::answer_from_chunks.
+
+### Criterion 3
+Gate stops out-of-corpus questions - PASS
+
+``` 
+(.venv) ai201-project1-unofficial-guide-starter-v2026 $ python app.py ask "What is the capital of Mongolia?"
+  (best distance 0.754, cutoff 0.6)
+
+I don't have enough information about that.
+
+0 model calls this session
+```
+
+Retrieval and distance produced by: store.py::search
+Refusal decision and text produced by: gate.py::check (gate.REFUSAL)
+Verified (pass/fail) by: scorer.py::classify_out_of_scope
+
+### Criterion 4
+rank-1 chunk contains the answer - FAILS
+
+The first chunk in the Documents list — the actual rank-1 result — is this one, which doesn't mention Marine Terrace at all:
+
+```
+[from guide_pellew_sands.md]
+# Pellew Sands
+
+Pellew Sands is a Victorian seaside resort that has been through three distinct lives: fashionable, then neglected, and now something in between. The architecture is from the first period and much of the infrastructure from the second.
+```
+The chunk that actually contains "Marine Terrace" came back 3rd, not 1st. This is a legitimate example of a rank-1 miss for your criteria table.
+
+Retrieval and chunk text produced by: store.py::search, assembled into the prompt by generate.py::build_prompt
+Verified (pass/fail) by: scorer.py::top_retrieval
+
+### Criterion 5
+cited source actually contains the fact - PASS
+
+Both cited sources hold the relevant text: guide_pellew_sands.md (chunk above) and guide_eating.md:
+```
+[from guide_eating.md]
+## The pattern worth knowing
+...
+Pellew Sands's seafront is chips and ice cream, and Marine Terrace behind it is where the actual restaurants are.
+```
+
+Answer and citations produced by: generate.py::answer_from_chunks
+Chunk text produced by: store.py::search
+Verified (pass/fail) by: scorer.py::source_contains_relevant_info
 
 ## Verdicts
 
