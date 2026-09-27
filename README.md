@@ -309,11 +309,11 @@ Verified (pass/fail) by: scorer.py::source_contains_relevant_info
 
 | # | Criterion | Verdict | How I decided |
 |---|---|---|---|
-| 1 |  |  |  |
-| 2 |  |  |  |
-| 3 |  |  |  |
-| 4 |  |  |  |
-| 5 |  |  |  |
+| 1 | Retrieved chunk contains the answer | MET | All three runs came back 5/5 against a 4/5 target. `retrieval_hits` is an exact substring match, and confirmed this criterion. |
+| 2 | Every answer names a source | MET | 5/5 every run. This is enforced structurally by the prompt template (`generate.py::GROUNDING_INSTRUCTION`). |
+| 3 | Gate stops out-of-corpus questions | MET | 5/5 every run, beating the 4/5 target I set to allow for boundary noise. My `OUT_OF_SCOPE` questions are unambiguously outside the corpus (capital of Mongolia, oil changes, etc.), so the gate never had a genuinely close case to get wrong. |
+| 4 | Rank-1 chunk contains the answer | MISSED | 3/5 in all three runs — not 4, 3, 4, but flat at 3 every time. That consistency matters: this isn't run-to-run noise, it's the same question(s) ranking their answer chunk below rank 1 on every single run. Diagnosed below. |
+| 5 | Cited source actually contains the claimed fact | MET | 5/5 by what `scorer.py::source_contains_relevant_info` check. The chunk text is real, unedited content from that file, so a match is genuine evidence the source contains the fact. 
 
 ## Diagnoses
 
