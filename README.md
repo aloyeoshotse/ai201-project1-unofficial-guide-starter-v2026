@@ -348,10 +348,13 @@ So, it seems that we have a problem in the retrieval phase. Chunks that have som
 
 **What I changed:**
 
+To give every chunk context on what specifically it is talking about, I will prepend the title of the document to them.
+
 **Why I picked it:**
 
 <!-- Connect it to a specific diagnosis above in one sentence. If you can't,
      you picked a fix because it sounded impressive. -->
+     I chose this because the main issue I was seeing is that certain chunks that contained the answer, but did not have keywords were not higher up in the chunk priority. So, by adding some more context to the chunk, I believe that I can allow the tool to more accurately prioritize the chunks. 
 
 ### Run Log — After
 

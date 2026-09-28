@@ -92,6 +92,7 @@ def split_on_headings(documents: list[Document]) -> list[Chunk]:
     chunks: list[Chunk] = []
 
     for doc in documents:
+        title = doc.text.split("\n", 1)[0] # the title line
         sections: list[list[str]] = [[]]
 
         for line in doc.text.split("\n"):
@@ -103,9 +104,10 @@ def split_on_headings(documents: list[Document]) -> list[Chunk]:
 
         index = 0
         for section in sections:
-            text = "\n".join(section).strip()
-            if not text:
+            body = "\n".join(section).strip()
+            if not body:
                 continue
+            text = body if index == 0 else f"{title}\n{body}"
             chunks.append(
                 Chunk(
                     text=text,
