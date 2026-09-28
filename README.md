@@ -188,6 +188,12 @@ I used AI to help me write my chunking method. I told it exactly how I wanted it
 **2.**
 I asked AI to help me refine and critique my criteria and questions. I asked for feedback and tips for improvement. It called out the different criteria that lacked specificity, and told me how to improve them. 
 
+**3.**
+In Unit 2, I used AI to help me identify patterns in my failing test cases for the criteria. Also, I used it to validate my reasoning for why certain criteria were failing. It was able to go through the code and figure out why certain things were happening. 
+
+**4.**
+Also in Unit 2, I used AI to help update some of the methods in order to run the criteria tests. To double check what I was doing, I used the methods in scorer.py to show that the tool was either passing or failing the criteria set. 
+
 <!-- ── Stretch features ─────────────────────────────────────────────────────
      Doing one? Say so here BEFORE you start. A feature this README never
      claims earns nothing.
@@ -335,11 +341,11 @@ Verified (pass/fail) by: scorer.py::source_contains_relevant_info
 
      Milestone 3. -->
 
-Criterion 4 (first chunk contains the answer) missed on 2 of the 5 questions. In both occassions, the miss was in the retrieval stage, and both were missed for the same reason: chunks in this corpus that share a place-name overlap out-ranked the chunk that actually has the fact.
+Criterion 4 (first chunk contains the answer) missed on 2 of the 5 questions. In both occasions, the miss was in the retrieval stage, and both were missed for the same reason: chunks in this corpus that share a place-name overlap out-ranked the chunk that actually has the fact.
 
-For example, the question **"Where can I find the best food in Pellew Sands?"** (expects: "Marine Terrace"). For this question, the chunk with the answer ranked 3rd. However, I observed something interesting. The top chunks mentioned Pellew Sands, but had nothing to do with the question I asked. The chunk that actualy contained the correct answer did not mention Pellew Sands once. So, the distance gives weight to having specific key words than actually having information relevant to my question. 
+For example, the question **"Where can I find the best food in Pellew Sands?"** (expects: "Marine Terrace"). For this question, the chunk with the answer ranked 3rd. However, I observed something interesting. The top chunks mentioned Pellew Sands, but had nothing to do with the question I asked. The chunk that actually contained the correct answer did not mention Pellew Sands once. So, the distance gives weight to having specific key words than actually having information relevant to my question. 
 
-Another example comes from the question **"If I drove on good roads from Brightwater to Thornby Wells, how long would it take?"**. Once again, we see the code looking for keywords instead of having enough context to know which file to pull from. The chunk with the correct answer, in this case, was the 5th chunk. Everyv chunk before either had the keyword 'Brightwater'. 
+Another example comes from the question **"If I drove on good roads from Brightwater to Thornby Wells, how long would it take?"**. Once again, we see the code looking for keywords instead of having enough context to know which file to pull from. The chunk with the correct answer, in this case, was the 5th chunk. Every chunk before either had the keyword 'Brightwater'. 
 
 So, it seems that we have a problem in the retrieval phase. Chunks that have some keywords, but do not have any relation to the question are being ranked higher than specific chunks that do not contain certain keywords, but directly answers the question.
 
@@ -363,11 +369,11 @@ To give every chunk context on what specifically it is talking about, I will pre
 
 | Criterion | Target | Run 1 | Run 2 | Run 3 | Verdict |
 |---|---|---|---|---|---|
-| 1. Retrieved chunk contains the answer | 4 of 5 |  |  |  |  |
-| 2. Every answer names a source | 5 of 5 |  |  |  |  |
-| 3. Gate stops out-of-corpus questions | 4 of 5 |  |  |  |  |
-| 4. | | | | | |
-| 5. | | | | | |
+| 1. Retrieved chunk contains the answer | 4 of 5 | 5/5 | 5/5 | 5/5 | MET |
+| 2. Every answer names a source | 5 of 5 | 5/5 | 5/5 | 5/5 | MET |
+| 3. Gate stops out-of-corpus questions | 4 of 5 | 5/5 | 5/5 | 5/5 | MET |
+| 4. Rank-1 chunk contains the answer | 4 of 5 | 5/5 | 5/5 | 5/5 | MET |
+| 5. Cited source actually contains it | 5 of 5 | 5/5 | 5/5 | 5/5 | MET |
 
 **Did it help?**
 
@@ -377,6 +383,7 @@ To give every chunk context on what specifically it is talking about, I will pre
      tell.
 
      Milestone 4. -->
+     Yes, it did help. I am now seeing that all of the criteria is met. Looking at the chart I am seeing that all the criteria is passing 100% of the time. Criterion 4 went from 3/5 to 5/5. 
 
 ## What's Still Broken
 
@@ -387,6 +394,7 @@ To give every chunk context on what specifically it is talking about, I will pre
      not.
 
      Milestone 5. -->
+     Nothing is broken, all the criteria is met. 
 
 ## What I'd Do Differently
 
@@ -394,3 +402,4 @@ To give every chunk context on what specifically it is talking about, I will pre
      differently, and why?
 
      Milestone 5. -->
+     I believe that I would have written another criteria for #5. The tool chunks and cites in a very accurate way, so it was very unlikely that we would get a mismatched source-to-chunk combination. I could have looked into if the chunks grabbed by the tool are even related to the question in general.
