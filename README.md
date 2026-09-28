@@ -335,6 +335,15 @@ Verified (pass/fail) by: scorer.py::source_contains_relevant_info
 
      Milestone 3. -->
 
+Criterion 4 (first chunk contains the answer) missed on 2 of the 5 questions. In both occassions, the miss was in the retrieval stage, and both were missed for the same reason: chunks in this corpus that share a place-name overlap out-ranked the chunk that actually has the fact.
+
+For example, the question **"Where can I find the best food in Pellew Sands?"** (expects: "Marine Terrace"). For this question, the chunk with the answer ranked 3rd. However, I observed something interesting. The top chunks mentioned Pellew Sands, but had nothing to do with the question I asked. The chunk that actualy contained the correct answer did not mention Pellew Sands once. So, the distance gives weight to having specific key words than actually having information relevant to my question. 
+
+Another example comes from the question **"If I drove on good roads from Brightwater to Thornby Wells, how long would it take?"**. Once again, we see the code looking for keywords instead of having enough context to know which file to pull from. The chunk with the correct answer, in this case, was the 5th chunk. Everyv chunk before either had the keyword 'Brightwater'. 
+
+So, it seems that we have a problem in the retrieval phase. Chunks that have some keywords, but do not have any relation to the question are being ranked higher than specific chunks that do not contain certain keywords, but directly answers the question.
+
+
 ## The Improvement
 
 **What I changed:**
